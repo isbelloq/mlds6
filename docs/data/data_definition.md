@@ -1,4 +1,4 @@
-# Data and Feature Definitions
+# Definición de datos y características
 
 Los datos están disponibles como formato json en la plataforma de datos abiertos, que se obtienen a traves de la [api](https://www.datos.gov.co/resource/xvdy-vvsk.json)
  
@@ -10,17 +10,17 @@ Dicha información es compartida públicamente en datos.gov.co, en formatos digi
 
 
 
-## Raw Data Sources
+## Fuentes de datos brutos
 
 | Dataset Name | Original Location   | Destination Location  | Data Movement Tools / Scripts | Link to Report |
 | ---:| ---: | ---: | ---: | -----: |
-| Dataset 1 | Informacion de los procesos de compra pública [api](https://www.datos.gov.co/resource/xvdy-vvsk.json) | Almacenados en una cuenta de google Drive | [datos abiertos](https://www.datos.gov.co/resource/xvdy-vvsk.json) | [Dataset 1 Report](link/to/report1)|
+| SECOP I | https://www.datos.gov.co/resource/xvdy-vvsk.json | `/home/mlds6_sbkfcp/data/raw/secop_i.json` | `/packagename/database/<por definir>` | *Por definir*|
 
 
 * Dataset1 summary. <Provide brief summary of the data, such as how to access the data. More detailed information should be in the Dataset1 Report.>
-* Dataset2 summary. <Provide brief summary of the data, such as how to access the data. More detailed information should be in the Dataset2 Report.> 
 
-## Processed Data
+
+## Datos procesados
 | Processed Dataset Name | Input Dataset(s)   | Data Processing Tools/Scripts | Link to Report |
 | ---:| ---: | ---: | ---: | 
 | Processed Dataset 1 | [Dataset1](link/to/dataset1/report), [Dataset2](link/to/dataset2/report) | [Python_Script1.py](link/to/python/script/file/in/Code) | [Processed Dataset 1 Report](link/to/report1)|
