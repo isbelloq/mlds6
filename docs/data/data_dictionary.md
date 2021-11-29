@@ -1,31 +1,11 @@
-# Data Dictionary
+# Diccionario de datos
 
-In this document you must describe the tables, collections or files that you are using in the project. You can describe each database and provide UML diagrams for a better design description.
+## Datos abiertos
 
-# Database Name 1
+La página [datos abiertos](https://www.datos.gov.co/) es un repositorio de de diferentes conjuntos de datos públicos del gobierno de Colombia.
 
-Description of the database.
+### SECOP-I
 
-![UML Diagram](/file/uml/database1)
+En la ruta https://www.datos.gov.co/Gastos-Gubernamentales/SECOP-I/xvdy-vvsk se encuentra la información de los procesos de compra pública registrados en la plataforma SECOP I.
+El diccionario del conjunto de datos se puede encontrar el la ruta `.\dic_secop_i.pdf` o en el enlace [Diccionario De Datos Abiertos](https://www.datos.gov.co/api/views/xvdy-vvsk/files/7c0a1ac8-3f7e-49c8-9a77-825a37840d49?download=true&filename=DiccionarioDeDatosAbiertos.pdf).
 
-## Table 1
-
-Here you must describe the table
-
-| column | type | description |
-| --- | --- | --- |
-| col1 | INT | Example column |
-
-# Database Name 2
-
-Description of the database.
-
-![UML Diagram](/file/uml/database1)
-
-## Table 2
-
-Here you must describe the table
-
-| column | type | description |
-| --- | --- | --- |
-| col1 | INT | Example column |
