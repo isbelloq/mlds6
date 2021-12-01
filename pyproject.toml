@@ -13,6 +13,7 @@ requests = "^2.26.0"
 [tool.poetry.dev-dependencies]
 ipython = "^7.30.0"
 jupyter = "^1.0.0"
+jupyterthemes = "^0.20.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
