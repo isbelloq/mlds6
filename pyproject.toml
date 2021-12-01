@@ -1,18 +1,18 @@
 [tool.poetry]
-name = "packagename"
+name = "mlds6"
 version = "0.1.0"
-description = "Project template for data science projects"
-authors = ["Juan Lara <julara@unal.edu.co>"]
+description = "Dependencias del proyecto de MLDS6_SBKFCP"
+authors = ["Santiago Bello <isbelloq@unal.edu.co>, Carlos Pinto <cfpintog@gmail.com>, Kendy Fuentes <kendyluz@gmail.com>, Fabian Moreno <fabiandandres@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
-pandas = "^1.3.4"
+python = ">=3.8,<3.11"
 numpy = "^1.21.4"
+pandas = "^1.3.4"
 requests = "^2.26.0"
 
 [tool.poetry.dev-dependencies]
+ipython = "^7.30.0"
 jupyter = "^1.0.0"
-notebook = "^6.4.6"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
