@@ -52,7 +52,7 @@ def getDataFrameDataByYear( year:int, *extra_columns:str, total_data= 200_000)->
     return secopDataFrame
 
 
-def saveSecopJSON(year:int , *extra_columns:str, total_data=200_000, dest='./', filename="datos_secop_")->None:
+def saveSecopJSON(year:int , *extra_columns:str, total_data=200_000, dest='./raw', filename="datos_secop_")->None:
         """ 
         save a JSON file that contains secop data
         =========================================
