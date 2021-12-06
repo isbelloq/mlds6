@@ -14,10 +14,10 @@ Dicha información es compartida públicamente en datos.gov.co, en formatos digi
 
 | Dataset Name | Original Location   | Destination Location  | Data Movement Tools / Scripts | Link to Report |
 | ---:| ---: | ---: | ---: | -----: |
-| SECOP I | https://www.datos.gov.co/resource/xvdy-vvsk.json | `/home/mlds6_sbkfcp/data/raw/secop_i.json` | `/packagename/database/<por definir>` | *Por definir*|
+| SECOP I | https://www.datos.gov.co/resource/xvdy-vvsk.json | `/home/mlds6_sbkfcp/data/raw/` | [uso de `make leerDatos`](https://raw.githubusercontent.com/isbelloq/mlds6/main/makefile) | [Reporte al demo de secop](https://github.com/isbelloq/mlds6/raw/main/docs/data/secop_summary.html)|
 
 
-* Dataset1 summary. <Provide brief summary of the data, such as how to access the data. More detailed information should be in the Dataset1 Report.>
+* **Resumen de SECOP I**: El resumen de los datos se encuentra en el [siguiente enlace](https://github.com/isbelloq/mlds6/raw/main/docs/data/secop_summary.html)
 
 
 ## Datos procesados

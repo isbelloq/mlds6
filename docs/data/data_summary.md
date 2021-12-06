@@ -1,16 +1,3 @@
-# Data Report
+# Reporte de datos
 
-This document contains the results from the exploratory data analysis.
-
-## General summary of the data
-
-## Data quality summary
-
-## Target variable
-
-## Individual variables
-
-## Variable ranking
-
-## Relationship between explanatory variables and target variable
-
+Todos los hallazgos de los datos en crudo se pueden ver en el [siguiente enlace](https://github.com/isbelloq/mlds6/raw/main/docs/data/secop_summary.html)
