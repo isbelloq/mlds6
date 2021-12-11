@@ -1,77 +1,69 @@
 """Cleaning module for Secop Data
 """
 import pandas as pd
-def cc_filter(secop_i : pd.DataFrame)-> pd.DataFrame:
-    """Filter cuantia contrato and valor contrato con adiciones with values greater than 0
 
-    Args:
-        secop_i (pd.DataFrame): 
-            Secop dataframe  
-            
-    Returns:
-        pd.DataFrame: 
-            Filtered dataframe
+def __set_type_person(contractor_id: str)->str:
+    """set the type category
+
+    Parameters
+    ----------
+    contractor_id: str
+        category of the contractor
+
+    Returns
+    -------
+    contractor_type
+        the contractor type (natural or jurídica)
     """
-    return secop_i.query("cuantia_contrato > 0 & valor_contrato_con_adiciones > 0") 
-
-def department_transform(secop_i : pd.DataFrame) -> pd.DataFrame:
-    """Transform department column for secop dataframe
-
-    Args:
-        secop_i (pd.DataFrame): 
-            Secop Dataframe
-
-    Returns:
-        pd.DataFrame: 
-    """
-    secop_i['departamento_entidad'] = secop_i['departamento_entidad'].str.upper()
-    return secop_i
-
-def nit_clean(secop_i : pd.DataFrame) -> pd.DataFrame:
-    """Clean rows without entity ID
-
-    Args:
-        secop_i (pd.DataFrame):  
-            Secop Dataframe
-
-    Returns:
-        pd.DataFrame: 
-    """
-    secop_i = secop_i[secop_i['nit_de_la_entidad'] != 'No Definido']
-    return secop_i
-    
-def overrun(secop_i : pd.DataFrame)-> pd.DataFrame:
-    """Generate an overrun aditional param
-
-    Args:
-        secop_i (pd.DataFrame):
-            Secop Dataframe
-    Returns:
-        pd.DataFrame: 
-    """
-    secop_i['sobrecosto'] =  (secop_i['valor_total_de_adiciones']/secop_i['cuantia_contrato'] > 0.2 ).astype(int)
-    return secop_i
+    PERSONA_NATURAL = ('Carné Diplomático',
+                       'Cédula de Ciudadanía',
+                       'Cédula de Extranjería',
+                       'Nit de Persona Natural',
+                       'Número de Fideicomiso',
+                       'Nuip', 
+                       'Pasaporte', 
+                       'Tarjeta de Identidad')
+    PERSONA_JURIDICA = ('Nit de Extranjería',
+                        'Nit de Persona Jurídica',
+                        'Sociedades Extranjeras'
+                        )
+    if contractor_id in PERSONA_NATURAL:
+        return "Persona natural"
+    elif contractor_id in PERSONA_JURIDICA:
+        return "Persona jurídica"
+    else:
+        return "No definido" 
     
     
-def drop_empty_values(secop_i : pd.DataFrame):
-    """Drop empty and duplicate values
+def preprocess_pipe(secop_i: pd.DataFrame) -> pd.DataFrame:
+    """Preprocess pipeline for the secop dataset
 
-    Args:
-        secop_i (pd.DataFrame): 
-            Secop Dataframe
+    Parameters
+    ----------
+    secop_i : pd.DataFrame
+        Raw dataframe
+
+    Returns
+    -------
+    clean_secop_df = pd.DataFrame
+        Preprocessed dataset
     """
-    secop_i.dropna(inplace=True)
-    secop_i.drop_duplicates(inplace=True)
-    
-def cop_currency(secop_i : pd.DataFrame) -> pd.DataFrame:
-    """sorts only by colombian peso in the moneda column
-
-    Args:
-        secop_i (pd.DataFrame): 
-            Secop Dataframe
-
-    Returns:
-        pd.DataFrame: 
-    """
-    return secop_i.query("moneda == 'Peso Colombiano'")
-    
+    clean_secop_df = (
+        secop_i
+        .query("moneda == 'Peso Colombiano'\
+                & nit_de_la_entidad != 'No Definido'\
+                & cuantia_contrato > 0\
+                & valor_contrato_con_adiciones > 0")
+        .assign(
+            sobrecosto =lambda df: (
+                df['valor_total_de_adiciones']/df['cuantia_contrato'] > 0.2).astype('int'),
+            departamento_entidad=lambda df: (df['departamento_entidad']
+                                             .str
+                                             .upper()
+                                             ),
+            Tipo_persona= lambda df: df['tipo_identifi_del_contratista'].map(__set_type_person)
+        )
+        .dropna()
+        .drop_duplicates()
+    )
+    return clean_secop_df
