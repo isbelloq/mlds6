@@ -17,7 +17,7 @@ Dicha información es compartida públicamente en datos.gov.co, en formatos digi
 | SECOP I | https://www.datos.gov.co/resource/xvdy-vvsk.json | `/home/mlds6_sbkfcp/data/raw/` | [uso de `make leerDatos`](https://raw.githubusercontent.com/isbelloq/mlds6/main/makefile) | [Reporte al demo de secop](https://github.com/isbelloq/mlds6/raw/main/docs/data/secop_summary.html)|
 
 
-* **Resumen de SECOP I**: El resumen de los datos se encuentra en el [siguiente enlace](https://github.com/isbelloq/mlds6/raw/main/docs/data/secop_summary.html)
+* **Resumen de SECOP I**: El resumen de los datos se encuentra en el [siguiente enlace](https://nash3025.github.io/)
 
 
 ## Datos procesados
