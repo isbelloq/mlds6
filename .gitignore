@@ -3,3 +3,5 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/*
 mlds6.env
+data/*
+Untitled.ipynb
