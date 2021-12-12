@@ -6,3 +6,4 @@ data/*
 *.ipynb
 .vscode
 models/
+documentacion original/
