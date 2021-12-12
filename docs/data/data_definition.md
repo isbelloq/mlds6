@@ -25,8 +25,11 @@ Dicha información es compartida públicamente en datos.gov.co, en formatos digi
 | ---:| ---: | ---: | ---: | 
 | Processed Dataset 1 | [Dataset1](link/to/dataset1/report), [Dataset2](link/to/dataset2/report) | [Python_Script1.py](link/to/python/script/file/in/Code) | [Processed Dataset 1 Report](link/to/report1)|
 | Processed Dataset 2 | [Dataset2](link/to/dataset2/report) |[script2.R](link/to/R/script/file/in/Code) | [Processed Dataset 2 Report](link/to/report2)|
-* Processed Data1 summary. <Provide brief summary of the processed data, such as why you want to process data in this way. More detailed information about the processed data should be in the Processed Data1 Report.>
-* Processed Data2 summary. <Provide brief summary of the processed data, such as why you want to process data in this way. More detailed information about the processed data should be in the Processed Data2 Report.> 
+* Processed Data1 summary. <Provide Para el  procesamiento de datos se tuvieron en cuenta las siguientes operaciones:
+1. Filtros: Se filtraron los registron que tuvieran la cuantía de contrato y el valor del contrato con adiciones mayores a cero. Así como también los valores con NIT válido y que la moneda en la que se encontraba la cuantía del contrato sea peso colombiano.
+2. Limpieza de nulos y duplicados: Elimina los registros sin datos y los registros duplicados en todos los valores de sus variables.
+3. Creación de columnas: Se crearon las columnas Departamento de ejecución del contrato y tipo de persona para identificar si es persona jurídica o natural a partir del tipo de identificación del contratista. Finalmente se construyó la variable sobrecosto, la cual identifica con 1 los registros en donde el valor total de las adiciones sea superior al 20% de la cuantía del contrato o 0 en otro caso>
+
 
 ## Feature Sets
 
@@ -35,5 +38,4 @@ Dicha información es compartida públicamente en datos.gov.co, en formatos digi
 | Feature Set 1 | [Dataset1](link/to/dataset1/report), [Processed Dataset2](link/to/dataset2/report) | [R_Script2.R](link/to/R/script/file/in/Code) | [Feature Set1 Report](link/to/report1)|
 | Feature Set 2 | [Processed Dataset2](link/to/dataset2/report) |[SQL_Script2.sql](link/to/sql/script/file/in/Code) | [Feature Set2 Report](link/to/report2)|
 
-* Feature Set1 summary. <Provide detailed description of the feature set, such as the meaning of each feature. More detailed information about the feature set should be in the Feature Set1 Report.>
-* Feature Set2 summary. <Provide detailed description of the feature set, such as the meaning of each feature. More detailed information about the feature set should be in the Feature Set2 Report.> 
+* Feature Set1 summary. <Provide Se realizaron 2 tipos de transformación en este dataset, por un lado se realizó OneHotEncoder en donde se crea una variable para cada categoría de las variables categóricas a las variables departaaamento de ejecución, objeto a contratar, tipo de persona y origen de los recursos. Por otro lado se hizo una transformación logarítmica a la variable cuantía del contrato.>
