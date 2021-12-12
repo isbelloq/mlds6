@@ -3,5 +3,6 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/*
 data/*
-Untitled.ipynb
+*.ipynb
 .vscode
+models/
