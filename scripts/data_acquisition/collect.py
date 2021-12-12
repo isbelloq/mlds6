@@ -13,7 +13,22 @@ __headers = {
         'Accept':'application/json'
         }
 __params = {
-        "$select":"uid,nombre_de_la_entidad,c_digo_de_la_entidad,nombre_grupo,tipo_de_contrato,departamento_entidad,tiempo_adiciones_en_dias,cuantia_contrato,valor_total_de_adiciones,valor_contrato_con_adiciones,origen_de_los_recursos,moneda",
+        "$select": ",".join([
+                "uid",
+                "tipo_identifi_del_contratista",
+                "objeto_a_contratar",
+                "nit_de_la_entidad",
+                "nombre_de_la_entidad",
+                "c_digo_de_la_entidad",
+                "nombre_grupo",
+                "tipo_de_contrato",
+                "departamento_entidad",
+                "tiempo_adiciones_en_dias",
+                "cuantia_contrato",
+                "valor_total_de_adiciones",
+                "valor_contrato_con_adiciones",
+                "origen_de_los_recursos",
+                "moneda"]),
         "estado_del_proceso":"Liquidado"
         }
 

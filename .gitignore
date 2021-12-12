@@ -2,4 +2,6 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 .venv/*
-mlds6.env
+data/*
+Untitled.ipynb
+.vscode
