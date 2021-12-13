@@ -10,6 +10,3 @@ if __name__=="__main__":
     saveSecopJSON(2017, dest=data_path.raw_data)
     saveSecopJSON(2016, dest=data_path.raw_data)
     saveSecopJSON(2019, dest=data_path.raw_data)
-
-    
-
