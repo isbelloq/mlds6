@@ -7,7 +7,6 @@ import os
 
 def generate_model_pipeline(
     extractor: ColumnTransformer,
-    selector: TransformerMixin,
     classifier: ClassifierMixin
 ) -> Pipeline:
     """Defines the model pipeline.
@@ -16,8 +15,6 @@ def generate_model_pipeline(
     ----------
     extractor : ColumnTransformer
         Extracts features from a dataframe.
-    selector : TransformerMixin
-        Selects the most important features.
     classifier : ClassifierMixin
         Classification model.
 
@@ -28,29 +25,32 @@ def generate_model_pipeline(
     """
     pipe = Pipeline([
         ("extractor", extractor),
-        ("selector", selector),
         ("classifier", classifier)
     ])
     return pipe
 
-def save_model_pipelin(model :Pipeline, filename = "model"):
+def save_model_pipeline(model :Pipeline, path: str ,filename = "model"):
     """Save model pipeline
 
     Parameters
     ----------
     model : Pipeline
         model to save
+    path: str
+        path to save the model
     filename : str, optional
         output filename, by default "model"
     """
     data_paths = get_data_paths()
     dump(model, os.path.join(data_paths.models, f"{filename}.joblib"))
     
-def load_model_pipeline(filename="model")->Pipeline:
+def load_model_pipeline(path: str, filename="model")->Pipeline:
     """Load model from disk
 
     Parameters
     ----------
+    path : str, 
+        path of the model 
     filename : str, optional
         input filename, by default "model"
 
@@ -60,6 +60,5 @@ def load_model_pipeline(filename="model")->Pipeline:
         output pipeline model
     """
     
-    data_paths = get_data_paths()
-    return load(os.path.join(data_paths.models , f"{filename}.joblib"))
+    return load(os.path.join(path , f"{filename}.joblib"))
     

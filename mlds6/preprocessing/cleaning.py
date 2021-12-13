@@ -2,7 +2,8 @@
 """
 import pandas as pd
 
-def __set_type_person(contractor_id: str)->str:
+
+def __set_type_person(contractor_id: str) -> str:
     """set the type category
 
     Parameters
@@ -20,8 +21,8 @@ def __set_type_person(contractor_id: str)->str:
                        'Cédula de Extranjería',
                        'Nit de Persona Natural',
                        'Número de Fideicomiso',
-                       'Nuip', 
-                       'Pasaporte', 
+                       'Nuip',
+                       'Pasaporte',
                        'Tarjeta de Identidad')
     PERSONA_JURIDICA = ('Nit de Extranjería',
                         'Nit de Persona Jurídica',
@@ -32,9 +33,9 @@ def __set_type_person(contractor_id: str)->str:
     elif contractor_id in PERSONA_JURIDICA:
         return "Persona jurídica"
     else:
-        return "No definido" 
-    
-    
+        return "No definido"
+
+
 def preprocess_pipe(secop_i: pd.DataFrame) -> pd.DataFrame:
     """Preprocess pipeline for the secop dataset
 
@@ -55,13 +56,14 @@ def preprocess_pipe(secop_i: pd.DataFrame) -> pd.DataFrame:
                 & cuantia_contrato > 0\
                 & valor_contrato_con_adiciones > 0")
         .assign(
-            sobrecosto =lambda df: (
+            sobrecosto=lambda df: (
                 df['valor_total_de_adiciones']/df['cuantia_contrato'] > 0.2).astype('int'),
             departamento_entidad=lambda df: (df['departamento_entidad']
                                              .str
                                              .upper()
                                              ),
-            Tipo_persona= lambda df: df['tipo_identifi_del_contratista'].map(__set_type_person)
+            Tipo_persona=lambda df: df['tipo_identifi_del_contratista'].map(
+                __set_type_person)
         )
         .dropna()
         .drop_duplicates()
