@@ -1,6 +1,6 @@
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from sklearn.base import TransformerMixin, ClassifierMixin
+from sklearn.base import  ClassifierMixin
 from mlds6.environment.base import get_data_paths
 from joblib import dump, load
 import os
@@ -29,7 +29,7 @@ def generate_model_pipeline(
     ])
     return pipe
 
-def save_model_pipeline(model :Pipeline, path: str ,filename = "model"):
+def save_model(model :Pipeline, path: str ,filename = "model"):
     """Save model pipeline
 
     Parameters
@@ -44,7 +44,7 @@ def save_model_pipeline(model :Pipeline, path: str ,filename = "model"):
     data_paths = get_data_paths()
     dump(model, os.path.join(data_paths.models, f"{filename}.joblib"))
     
-def load_model_pipeline(path: str, filename="model")->Pipeline:
+def load_model(path: str, filename="model")->Pipeline:
     """Load model from disk
 
     Parameters

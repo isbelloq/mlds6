@@ -1,15 +1,12 @@
 
-from collect import saveSecopJSON
-import os
+from mlds6.database.collect import saveSecopJSON
 from mlds6.environment.base import get_data_paths
-if __name__=="__main__":
+
+def main():
     data_path = get_data_paths()
-    BASE_DIRECTORY = os.environ['DATA_PATH']
+    for year in range(2016,2020):
+        saveSecopJSON(year, dest=data_path.raw_data)
 
-    saveSecopJSON(2018, dest=data_path.raw_data)
-    saveSecopJSON(2017, dest=data_path.raw_data)
-    saveSecopJSON(2016, dest=data_path.raw_data)
-    saveSecopJSON(2019, dest=data_path.raw_data)
-
-    
+if __name__=="__main__":
+  main()
 

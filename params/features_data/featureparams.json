@@ -1,0 +1,9 @@
+{
+  "features": [
+    "objeto_a_contratar",
+    "departamento_entidad",
+    "Tipo_persona",
+    "origen_de_los_recursos"
+  ],
+  "target_features": "sobrecosto"
+}

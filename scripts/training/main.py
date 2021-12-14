@@ -1,4 +1,4 @@
-from mlds6.models.model import load_model_pipeline
+from mlds6.models.model import load_model
 from mlds6.environment.base import get_data_paths
 from mlds6.database.io import load_table
 from mlds6.preprocessing.cleaning import preprocess_pipe
@@ -36,7 +36,7 @@ def main():
 
         train_data = preprocess_pipe(train_data)
         X, y = select_features(train_data)
-        model = load_model_pipeline(data_path.models, model_name)
+        model = load_model(data_path.models, model_name)
         model.fit(X,y)
         
 
