@@ -16,5 +16,6 @@ runJupyter:
 
 runEvaluation:
 	source mlds6.env && python scripts/evaluation/main.py --model LogisticRegression
+	
 runIpython:
 	source mlds6.env && ipython
