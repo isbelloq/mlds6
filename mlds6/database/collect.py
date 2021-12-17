@@ -105,12 +105,12 @@ def __requestDataByYear( year:int, total_data:int, *extra_columns:str)->requests
 
 
 
-def obtener_no_liquidados( year:int, total_data= 200_000)->pd.DataFrame:
+def obtener_convocados( year:int, total_data= 200_000)->pd.DataFrame:
         api_params = get_api_params()
         params = get_api_params().params
         
         params['$select'] = ",".join(params['$select'])
-        params["$where"] = 'estado_del_proceso != "Liquidado"'
+        params["$where"] = 'estado_del_proceso = "Convocado"'
         
         del params['estado_del_proceso']
         

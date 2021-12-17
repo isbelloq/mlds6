@@ -23,3 +23,4 @@ class DataLakePaths(BaseModel):
     param_hiperparams :str
     pipe_features: str
     api_params: str
+    utils_data: str

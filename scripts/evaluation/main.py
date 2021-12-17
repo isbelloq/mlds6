@@ -5,16 +5,16 @@ import argparse
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
 
 
 from mlds6.datamodels.training import ModelType
 from mlds6.models.feature_extraction import get_train_data
 from mlds6.evaluation.gridEvaluation import (train_search_model,
                                              save_model_report, 
-                                             save_evaluation_model,
+                                             save_grid_model,
+                                             save_scoring_report,
                                              get_hiperparams)
-
+from mlds6.models.model import save_model
 
 def main(parser: ArgumentParser):
     args = parser.parse_args()
@@ -31,12 +31,16 @@ def main(parser: ArgumentParser):
                                   hiperparams)
     
     save_model_report(grid_model, 
-                      model_type)
+                      model_type.name)
+    save_scoring_report(X_test, 
+                        y_test, 
+                        grid_model,
+                        model_type.name)
     
-    y_pred = grid_model.predict(X_test)
-    print("Accuracy: ", accuracy_score(y_test, y_pred))
+   
     
-    save_evaluation_model(grid_model, model_type)
+    save_grid_model(grid_model, model_type.name)
+    save_model(grid_model.best_estimator_, model_type.name)
 
 
 if __name__ == "__main__":

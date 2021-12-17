@@ -14,10 +14,11 @@ def get_data_paths() -> DataLakePaths:
         preprocessed_data = os.environ["PREPROCESSED_DATA_PATH"],
         models = os.environ["MODELS_PATH"],
         features = os.environ["FEATURES_PATH"],
-        pipe_features = os.environ['PIPE_FEATURES_PATH'],
+        pipe_features = os.environ['FEATURES_PATH'],
         api_params = os.environ['API_PARAMS'],
         param_features = os.environ["FEATURES_PARAMS_PATH"],
-        param_hiperparams = os.environ["HIPERPARAMS_PATH"]
+        param_hiperparams = os.environ["HIPERPARAMS_PATH"],
+        utils_data = os.environ["UTILS_PATH"]
     )
     return paths
     

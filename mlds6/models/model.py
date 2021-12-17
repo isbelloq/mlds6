@@ -29,15 +29,13 @@ def generate_model_pipeline(
     ])
     return pipe
 
-def save_model(model :Pipeline, path: str ,filename = "model"):
+def save_model(model :Pipeline,filename = "model"):
     """Save model pipeline
 
     Parameters
     ----------
     model : Pipeline
         model to save
-    path: str
-        path to save the model
     filename : str, optional
         output filename, by default "model"
     """
