@@ -4,7 +4,6 @@ from mlds6.environment.base import get_data_paths
 from mlds6.database.io import export_table
 from argparse import ArgumentParser
 
-
 def main():
     parser = ArgumentParser()
     parser.add_argument('--convocados', '-c',
