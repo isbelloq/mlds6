@@ -1,36 +1,16 @@
 """
-get_data
+collect
         module for extract and save data from Secop API
 """
 import requests
 import json
+from mlds6.datamodels.api import ApiParams
+from mlds6.environment.base import get_data_paths
 from os import path, getcwd
 import pandas as pd
 import io 
+import os
 
-__URL="https://www.datos.gov.co/resource/xvdy-vvsk.json"
-__headers = {
-        'Accept':'application/json'
-        }
-__params = {
-        "$select": ",".join([
-                "uid",
-                "tipo_identifi_del_contratista",
-                "objeto_a_contratar",
-                "nit_de_la_entidad",
-                "nombre_de_la_entidad",
-                "c_digo_de_la_entidad",
-                "nombre_grupo",
-                "tipo_de_contrato",
-                "departamento_entidad",
-                "tiempo_adiciones_en_dias",
-                "cuantia_contrato",
-                "valor_total_de_adiciones",
-                "valor_contrato_con_adiciones",
-                "origen_de_los_recursos",
-                "moneda"]),
-        "estado_del_proceso":"Liquidado"
-        }
 
 def getLocalDataFrame(src: str)->pd.DataFrame:
     """
@@ -105,15 +85,17 @@ def __requestDataByYear( year:int, total_data:int, *extra_columns:str)->requests
         *extra_columns: str 
                 extra columns to extract data
         """
-        params = dict(__params)
+        api_params = get_api_params()
+        params = api_params.params
+        params['$select'] = ",".join(params['$select'])
         params['anno_firma_del_contrato'] = year
         params['$limit'] = str(total_data)
         
         if len(extra_columns):
                 params['$select'] = params['$select']+","+",".join(extra_columns)
 
-        secopData = requests.get(__URL,
-                headers=__headers, 
+        secopData = requests.get(api_params.URL,
+                headers=api_params.headers, 
                 params=params)
         
         secopData.raise_for_status()
@@ -123,15 +105,20 @@ def __requestDataByYear( year:int, total_data:int, *extra_columns:str)->requests
 
 
 
-def obtener_no_liquidados( year:int, total_data= 200_000)->pd.DataFrame:
-        params = dict(__params)
-     
-        params["$where"] = 'estado_del_proceso != "Liquidado"'
+def obtener_convocados( year:int, total_data= 200_000)->pd.DataFrame:
+        api_params = get_api_params()
+        params = get_api_params().params
+        
+        params['$select'] = ",".join(params['$select'])
+        params["$where"] = 'estado_del_proceso = "Convocado"'
+        
         del params['estado_del_proceso']
+        
         params['anno_firma_del_contrato'] = year
         params['$limit'] = str(total_data)
-        request = requests.get(__URL,
-                headers=__headers, 
+
+        request = requests.get(api_params.URL,
+                headers=api_params.headers, 
                 params=params)
         
         request.raise_for_status()
@@ -139,8 +126,18 @@ def obtener_no_liquidados( year:int, total_data= 200_000)->pd.DataFrame:
         secopData = request.content
         return pd.read_json(io.StringIO(secopData.decode('utf-8')))     
                 
-        
     
-if __name__ == '__main__':
-        df = obtener_no_liquidados(2018)
-        print(df.shape)
+def get_api_params()->ApiParams:
+        """Load api params from file
+
+        Returns
+        -------
+        ApiParams
+            [description]
+        """
+        paths = get_data_paths()
+        file = os.path.join(paths.api_params, 'params.json')
+        with open(file) as f:
+               api_params = json.load(f)
+        
+        return ApiParams(**api_params) 

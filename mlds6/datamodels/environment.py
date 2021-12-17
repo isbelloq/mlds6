@@ -19,3 +19,8 @@ class DataLakePaths(BaseModel):
     preprocessed_data: str
     models : str
     features : str
+    param_features : str
+    param_hiperparams :str
+    pipe_features: str
+    api_params: str
+    utils_data: str
