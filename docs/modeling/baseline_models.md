@@ -46,6 +46,9 @@ Se emplea el siguiente diseño de red neuronal multicapa, con los siguientes hip
 | den5           | 5                 | softmax               |                  |
 | sobrecosto     | 1                 | tanh                  |                  |
 
+optimizador: Adam Learning Rate 1e-3
+Loss: Binary CrossEntropy
+
 
 
 ## Results (Model Performance)
